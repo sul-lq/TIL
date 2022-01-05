@@ -1,0 +1,89 @@
+TIL 
+
+머신러닝 학습
+
+연속적인 문제를 해결해야 할 때 컴퓨터에게 대신 시킴
+
+회귀(regression)와 분류(Classification)
+
+머신러닝은 크게 지도/비지도/강화 학습
+
+지도 학습(Supervised learning) = 정답을 알려주면서 학습
+
+비지도 학습(Unsupervised learning) = 정답 없이 군집화(Clustering) 학습
+
+강화 학습(Reinforcement learning) = 머신러닝의 꽃 주어진 데이터없이 실행과 오류를 반복하면서 학습하는 방법
+자주 쓰이는 곳 = 게임 실시간처리
+
+강화학습의 개념
+- 에이전트(Agent)
+- 환경(Environment)
+- 상태(State)
+- 행동(Action)
+- 보상(Reward)
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import Adam, SGD
+import numpy as np
+기본적인 4가지
+import pandas as pd 파일 읽을때 
+import matplotlib.pyplot as plt 그래프 그릴 때
+import seaborn as sns 그래프 그릴 때
+from sklearn.model_selection import train_test_split 머신러닝을 도와주는 패키지 
+
+데이터셋 로드
+df = pd.read_csv('advertising.csv')
+df.head(5) 앞에서 5번째 tail꼬리
+
+데이터셋 크기 살펴보기
+print(df.shape) 200개 데이터셋 4열
+
+데이터셋 살짝 살펴보기
+sns.pairplot(df, x_vars=['TV', 'Newspaper', 'Radio'], y_vars=['Sales'], height=4) 
+
+데이터셋 가공
+
+x_data = np.array(df[['TV']], dtype=np.float32)
+y_data = np.array(df['Sales'], dtype=np.float32)
+
+print(x_data.shape)
+print(y_data.shape)
+
+reshape을해야 케라스가 인식하기 편함 
+x_data  = x_data.reshape((-1, 1)) reshape 남은 수만큼 알아서 변형해라 뒤에가 무조건 1이 되어야한다
+y_data = y_data.reshape((-1, 1))
+
+print(x_data.shape)
+print(y_data.shape)
+
+데이터셋 분할 
+학습 검증 테스트로 3개 
+
+x_train, x_val, y_train, y_val = train_test_split(x_data, y_data, test_size=0.2, random_state=2021)
+
+print(x_train.shape, x_val.shape)
+print(y_train.shape, y_val.shape)
+
+(160, 1) (40, 1)  160개의 데이터로 학습을 시키고 40개로 검증
+(160, 1) (40, 1)
+
+model = Sequential([
+  Dense(1)
+])
+
+model.compile(loss='mean_squared_error', optimizer=Adam(lr=0.1)) 성능이 더 좋은 optimizer=Adam
+
+model.fit(  학습시킬땐
+    x_train, 데이터 넣어주기
+    y_train, 데이터 넣어주기
+    validation_data=(x_val, y_val), # 검증 데이터를 넣어주면 한 epoch이 끝날때마다 자동으로 검증
+    epochs=100 # epochs 복수형으로 쓰기! 100번 학습을 해라
+)
+
+검증 데이터로 예측하기
+y_pred = model.predict(x_val) 검증 한 데이터가 나오게 되고
+
+plt.scatter(x_val, y_val 경사값) scatter 점을 찍는 그래프
+plt.scatter(x_val, y_pred 예측값, color='r' 빨간색)
+plt.show()
