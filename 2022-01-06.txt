@@ -1,0 +1,33 @@
+추천해 주신 책을 시작으로
+
+지금 상황과 상관없이 여러분은 언제나 더 나아질 수 있다. 
+더 나아지는 일은 언제나 스스로부터 시작할 수 있다. 
+더 나아지는 일은 언제나 오늘부터 시작할 수 있다. 
+
+No matter the circumstances you can always improve.
+You can always start improving with yourself.
+You can always start improving today.
+ 
+- 익스트림 프로그래밍(2판).켄트 벡, 신시아 안드레스 지음. 김창준,정지호 옮김.
+
+개념지도에 있는 내용을 정리해 보려고 한다.
+
+협업을 위한단계
+
+1단계. 누가 이 작업 할 것인지 정한다. - Issue
+2단계. 각자 맡은 것을 작업한다. - Branch
+3단계. 각자 작업을 프로젝트에 합친다. - merge
+(경우에 따라). 작업한 내용을 리뷰하고 최종적으로 프로젝트에 반영한다. - PR 후 merge
+
+내가 생각한 issue 내가 할게! 어디서 할래? >>> 나만의 공간 (Branch) 메인 가지 옆에 새로운 가지로 나아간다
+Merge 합칠래 ?? 라고 물어본다 ! 그래 합치자 Merge실행 어 ?다른 사람이 같은 파일을 수정했네?
+Merge conflict 발생 똑똑한 git 어느 부분인지 다 표시해줌 HEAD에 mainbranch의 내용이 들어가고 밑에 다른 branch의 내용이 들어간다.
+Merge conflict 괜찮아 수정하고 커밋해줘 ! 수정 후 커밋하면 해결 
+
+원격 repo origin 사실 반전은 mainbrancg를 tracking하고 있다는 것 !
+
+작업할 브랜치로 변경Checkout을 꼭 하고 작업해야함
+
+Tracking하는 branch에 Push >> 원격repo
+Tracking하는 branch에서 Pull >> 로컬repo로 
+ 
