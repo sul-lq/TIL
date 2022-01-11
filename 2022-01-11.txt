@@ -1,0 +1,108 @@
+회귀 Regression  
+
+입력값과 출력값을 정의 해야함
+출력값이 연속적인 문제를 예측해야 할 때 
+연속적인 소수점으로 예측하게 하도록 푸는 방법이 회귀
+
+분류 ClassiFication
+이진 클래스 Binary class
+비연속적인 문제를 풀 때
+
+여러개 다중 분류 Multi-class , Multi-label ClassiFication이라고 함 
+
+둘 다 가능한 문자 
+사진으로 나이 예측 회귀 나이 값으로 풀 수 있지만 나이 범위 class로 지정해서 0~9 이런식으로 풀 수 있음
+
+머신라닝 학습 방법 
+
+크게 3가지로 나뉨 지도 학습/비지도 학습/강화 학습
+
+지도 학습 (Supervised Learning) 분류와 회귀가 있음
+
+입력값에 해당하는 데이터는 있어도 출력값(정답)에 해당하는 데이터가 없는 경우가 비일비재합니다. 따라서 입력값에 정답을 하나씩 
+입력해주는 작업을 하게 되는 경우가 있는데 그 과정을 노가다 라벨링(Labeling, 레이블링) 또는 어노테이션(Annotation)이라고 합니다.
+
+비지도 학습 (UnSupervised Learning) 정답을 알려주지 않고 군집화(Clustering) 함
+
+비지도 학습은 그룹핑 알고리즘(Grouping algorithm)의 성격을 띄고 있다 비슷한 것 끼리 분류
+비지도 학습의 종류
+
+- 군집 (Clustering)
+    - K-평균 (K-Means)
+    - 계측 군집 분석(HCA, Hierarchical Cluster Analysis)
+    - 기댓값 최대화 (Expectation Maximization)
+
+- 시각화(Visualization)와 차원 축소(Dimensionality Reduction)
+    - 주성분 분석(PCA, Principal Component Analysis)
+    - 커널 PCA(Kernel PCA)
+    - 지역적 선형 임베딩(LLE, Locally-Linear Embedding)
+    - t-SNE(t-distributed Stochastic Neighbor Embedding)
+
+- 연관 규칙 학습(Association Rule Learning)
+    - 어프라이어리(Apriori)
+    - 이클렛(Eclat)
+
+강화 학습 (Reinforcement) 머신러닝의 꽃 게임이나 실시간처리에 많이 쓰임
+
+대표적인 예시 - 알파고(여러개의 경우의 수를 학습하게 하고 가장 이길 확률이 높은 곳에 두면 보상(점수로 표현해서 줌)을 가장 많이 줌)
+
+- 강화학습의 개념
+    - 에이전트(Agent)
+    - 환경(Environment)
+    - 상태(State)
+    - 행동(Action)
+    - 보상(Reward)
+
+게임을 예로 들면 게임의 규칙을 따로 입력하지 않고 자신(Agent)이 게임 환경(Environment)에서 
+현재 상태(State)에서 높은 점수(Reward)를 얻는 방법을 찾아가며 행동(Action)하는 
+학습 방법으로 특정 학습 횟수를 초과하면 높은 점수(Reward)를 획득할 수 있는 전략이 형성되게 됩니다. 
+단, 행동(Action)을 위한 행동 목록(방향키, 버튼)등은 사전에 정의가 되어야 합니다.
+ 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+모든 문제는 선형으로 풀 수 있다 라고 가정하는 것이 선형 회귀
+선형 회귀 Linear Regression 간단하지만 강력함
+
+(직선 = 1차함수)
+H(x) = W(기울기)x + b(y절편) = 가설(Hypothesis)이라고 부름 w=웨이트(행렬 형태) ,b=바이어스
+
+여기서 우리가 임의로 만든 직선 H(x)를 가설(Hypothesis)이라고 하고 Cost를 손실 함수(Cost or Loss function)라고 합니다.
+
+손실함수 = Cost/Loss function 직선(가설)과 점(정답)의 거리, (mean square error 평균 제곱 오차) 
+cost가 minimize(최소화) 가 되게 학습을 시킨다 w,b를 바꿔가면서
+
+다중 선형 회귀(Multi-variable linear regression)
+
+입력 변수가 여러개 선형 회귀와 비슷함 
+
+경사 하강법 (Gradient descent method)
+최저 cost를 찾아서 계속 내려가는 방법 / initial weight 처음 시작점에서 코스트값을 계산하면서 계속 내려감
+한칸씩 전진하는 단위를 Learning rate라고 부름
+Learning rate가 지나치게 큰 경우 우리가 찾으려는 최소값을 지나치고 최악의 경우 발산하게 될 수도 있음 이런 상황을 Overshooting이라고 함
+Learning rate를 잘못 설정할 경우 Local cost minimum에 빠질 가능성이 높다
+
+데이터셋 분할
+학습/검증/테스트 데이터
+
+학습Training set 검증 Validatino 실제 활용 할 수 있는지 testing셋
+
+1. Training set (학습 데이터셋, 트레이닝셋) = 교과서
+    
+    머신러닝 모델을 학습시키는 용도로 사용합니다. 전체 데이터셋의 약 80% 정도를 차지합니다.
+    
+2. Validation set (검증 데이터셋, 밸리데이션셋) = 모의고사
+    
+    머신러닝 모델의 성능을 검증하고 튜닝하는 지표의 용도로 사용합니다. 이 데이터는 정답 라벨이 있고, 학습 단계에서 사용하기는 
+    하지만, 모델에게 데이터를 직접 보여주지는 않으므로 모델의 성능에 영향을 미치지는 않습니다.
+    손실 함수, Optimizer 등을 바꾸면서 모델을 검증하는 용도로 사용합니다.
+    전체 데이터셋의 약 20% 정도를 차지합니다.
+    
+3. Test set (평가 데이터셋, 테스트셋) = 수능
+   
+정답 라벨이 없는 실제 환경에서의 평가 데이터셋
+검증 데이터셋으로 평가된 모델이 아무리 정확도가 높더라도 사용자가 사용하는 제품에서 제대로 동작하지 않는다면 소용이 없다
+
+
+
+ 
+
+
